@@ -52,7 +52,7 @@ class App extends Component {
         counter += 1
       }
     })
-    return sum / counter
+    return (sum / counter).toFixed(2)
   }
 
   renderHeader(data) {
