@@ -31,12 +31,12 @@ class App extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:8081/data/getData/MYZZERO123')
+    axios.get('http://18.231.9.226:8081/data/getData/MYZZERO123')
     .then((response) => {
       this.setState({data: response.data})
     })
     setInterval(() => {
-      axios.get('http://localhost:8081/data/getData/MYZZERO123')
+      axios.get('http://18.231.9.226:8081/data/getData/MYZZERO123')
       .then((response) => {
         this.setState({data: response.data})
       })
@@ -83,7 +83,7 @@ class App extends Component {
         return (
           <TableRow>
             {this.renderRowData(values.data)}
-            <TableRowColumn>{moment(values.timestamp).format('h:m - DD/MM/YYYY ')}</TableRowColumn>
+            <TableRowColumn>{moment(values.timestamp).format('hh:mm - DD/MM/YYYY ')}</TableRowColumn>
           </ TableRow>
         )
       })
