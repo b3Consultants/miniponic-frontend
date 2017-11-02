@@ -1,0 +1,29 @@
+{
+  "extends": [
+    "standard",
+    "standard-jsx",
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
+  "parser": "babel-eslint",
+  "plugins": [
+    "import",
+    "node",
+    "promise",
+    "react",
+    "standard"
+  ],
+  "rules": {
+    "comma-dangle": ["error", "never"],
+    "react/prop-types": [0]
+  },
+  "globals": {
+    "__DEV__": false,
+    "it": false,
+    "expect": false,
+    "describe": false,
+    "jest": false,
+    "__STAGING__": false,
+    "localStorage": false
+  }
+}

@@ -1,0 +1,16 @@
+machine:
+  node:
+    version: 8.4.0
+
+dependencies:
+  override:
+    - npm install
+    - sudo pip install awscli
+
+deployment:
+  prod:
+    branch: master
+    commands:
+      - npm install
+      - npm run build
+      - aws s3 sync public s3://miniponic --delete

@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
   Table,
   TableBody,
   TableHeader,
   TableHeaderColumn,
   TableRow,
-  TableRowColumn,
-} from 'material-ui/Table';
-import Paper from 'material-ui/Paper';
-import axios from 'axios';
-import moment from 'moment';
+  TableRowColumn
+} from 'material-ui/Table'
+import Paper from 'material-ui/Paper'
+import axios from '../utils/axios'
+import moment from 'moment'
 
 const style = (url) => ({
   height: 350,
@@ -24,19 +24,19 @@ const style = (url) => ({
 
 class App extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       data: null
-    };
+    }
   }
 
   componentDidMount() {
-    axios.get('http://18.231.9.226:8081/data/getData/MYZZERO123')
+    axios.get('/data/getData/MYZZERO123')
     .then((response) => {
       this.setState({data: response.data})
     })
     setInterval(() => {
-      axios.get('http://18.231.9.226:8081/data/getData/MYZZERO123')
+      axios.get('/data/getData/MYZZERO123')
       .then((response) => {
         this.setState({data: response.data})
       })
@@ -79,12 +79,12 @@ class App extends Component {
 
   renderData(data) {
     return (
-      data.map((values) => {
+      data.map(values => {
         return (
-          <TableRow>
+          <TableRow key>
             {this.renderRowData(values.data)}
             <TableRowColumn>{moment(values.timestamp).format('hh:mm - DD/MM/YYYY ')}</TableRowColumn>
-          </ TableRow>
+          </TableRow>
         )
       })
     )

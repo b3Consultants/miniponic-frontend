@@ -1,0 +1,4 @@
+public/*.js
+src/components/ECG/*.js
+src/vendor/*.js
+
