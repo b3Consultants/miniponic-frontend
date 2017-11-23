@@ -1,5 +1,13 @@
 import React, { Component } from 'react'
-import { VictoryChart, VictoryLine, VictoryTheme, VictoryAxis, VictoryLegend } from 'victory'
+import {
+  VictoryChart,
+  VictoryLine,
+  VictoryTheme,
+  VictoryAxis,
+  VictoryLegend,
+  VictoryVoronoiContainer,
+  VictoryTooltip
+} from 'victory'
 import moment from 'moment'
 import getAverage from '../utils/getAverage'
 
@@ -13,8 +21,21 @@ class Chart extends Component {
     })
   )
 
-  getDatesRange = (rawData) => {
-    const totalRangeOfDates = rawData.reverse().map(value => {
+  cleanData = (rawData, type) => {
+    const cleanData = []
+    for(let i = 0; i < rawData.length; i++) {
+      const value = rawData[i]
+      if (!this.hasNaNAverages(value)) cleanData.push(value)
+    }
+    return cleanData
+  }
+
+  hasNaNAverages = (value) => {
+    return getAverage(value.data['temperature']) === 'NaN'
+  }
+
+  getDatesRange = (data) => {
+    const totalRangeOfDates = data.reverse().map(value => {
       return value.timestamp
     })
     const dateStep = Math.floor((totalRangeOfDates.length) / 3)
@@ -27,8 +48,7 @@ class Chart extends Component {
   }
 
   render() {
-    const { data } = this.props
-
+    const data = this.cleanData(this.props.data)
     const tempData = this.parseData(data, 'temperature')
     const humData = this.parseData(data, 'humidity')
     const lumData = this.parseData(data, 'luminosity')
@@ -39,6 +59,16 @@ class Chart extends Component {
         theme={VictoryTheme.material}
         height={300}
         width={900}
+        containerComponent={
+          <VictoryVoronoiContainer
+            dimension="x"
+            labels={(d) => `value: ${d.y}, time: ${moment(d.x).format('hh:mm a - DD/MM/YYYY')}`}
+            labelComponent={
+              <VictoryTooltip
+                cornerRadius={0}
+                flyoutStyle={{fill: "white"}}
+              />}
+          />}
       >
         <VictoryAxis
           scale='time'

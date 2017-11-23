@@ -39,7 +39,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    axios.get('/data/getData/MYZZERO123/limit/1344')
+    axios.get('/data/getData/MYZZERO123/limit/667')
     .then((response) => {
       this.setState({graphData: response.data})
     })
@@ -52,7 +52,7 @@ class App extends Component {
       .then((response) => {
         this.setState({data: response.data})
       })
-      axios.get('/data/getData/MYZZERO123/limit/1344')
+      axios.get('/data/getData/MYZZERO123/limit/667')
       .then((response) => {
         this.setState({graphData: response.data})
       })
