@@ -6,7 +6,6 @@ const defaultState = {
   url: 'http://thewallpaper.co/wp-content/uploads/2016/06/nature-full-hd-national-geographic-download-wallpaper-free-display-1920x1080-1366x768.jpg',
   allData: [],
   error: null,
-  tab: 0,
   start: true
 };
 
@@ -17,7 +16,6 @@ const dataReducer = (state = defaultState, action) => {
         ...state,
         allData: cleanData(action.payload.data),
         isFetching: false,
-        tab: 1,
         start: false
        };
     }
@@ -32,7 +30,6 @@ const dataReducer = (state = defaultState, action) => {
         ...state,
         url: `data:image/jpeg;base64,${action.payload.data}`,
         isFetching: false,
-        tab: 0,
         start: false
        };
     }
