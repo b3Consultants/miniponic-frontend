@@ -66,8 +66,8 @@ class App extends Component {
             </Tabs>
           </AppBar>
           {value === 0 && <div><Historical data={allData} /></div>}
-          {value === 1 && <div><CameraView url={url} data={allData.reverse()[0]} /></div>}
-          {value === 2 && <div><ControlPanel data={allData.reverse()[0]} /></div>}
+          {value === 1 && <div><CameraView url={url} data={allData[0]} /></div>}
+          {value === 2 && <div><ControlPanel data={allData[0]} /></div>}
         </div>
     )
   }
